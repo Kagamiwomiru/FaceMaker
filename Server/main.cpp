@@ -3,9 +3,9 @@ vector<Rect> detectFaceInImage(Mat &image) {
 	CascadeClassifier cascade_front;
 	CascadeClassifier cascade_pro;
 	CascadeClassifier cascade_eye;
-	cascade_front.load("./haarcascade_frontalface_alt2.xml");
-	cascade_pro.load("./haarcascade_frontalface_alt.xml");
-	cascade_eye.load("./haarcascade_eye.xml");
+	cascade_front.load("./cascade/haarcascade_frontalface_alt2.xml");
+	cascade_pro.load("./cascade/haarcascade_frontalface_alt.xml");
+	cascade_eye.load("./cascade/haarcascade_eye.xml");
 	vector<Rect> faces1;
 	vector<Rect> faces2;
 	vector<Rect> eyes;
@@ -118,19 +118,21 @@ int main(int argc ,char *argv[]) {
 	if(argc<2) return -1;
 	string input_path;
 	string output_path;
-	char rmcmd[SYSCMD];//set input_filepath
 	int num_images=100;
 	char input[255];
 	char output[255];
+	char mkcmd[255];
+	char sendcmd[255];
 	sprintf(input,"./face/inpic/%s/",argv[1]);
 	input_path=string(input);
 	input_path +="in_%03d.jpg";
 	sprintf(output,"./face/outpic/%s/",argv[1]);
 	output_path=string(output);
 	output_path+="out_%03d.jpg";
-
-	sprintf(rmcmd,"rm %sin_*",input);
-
+	sprintf(mkcmd,"mkdir ./face/outpic/%s",argv[1]);
+	system(mkcmd);
+	sprintf(sendcmd,"scp -r ./face/outpic/%s Raspi:FaceMaker/outpic/",argv[1]);
+	system(sendcmd);
 	int y1, x1;
 	int count = 0;
 	Mat in;
@@ -160,7 +162,7 @@ int main(int argc ,char *argv[]) {
 		}
 		count++;
 	}
-
-	system(rmcmd);//Delete all input_file. 
+	sprintf(sendcmd,"scp -r ./face/outpic/%s Raspi:FaceMaker/outpic/",argv[1]);
+	system(sendcmd);
 return 0;
 }
