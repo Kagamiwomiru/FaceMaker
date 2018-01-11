@@ -21,6 +21,6 @@ using namespace cv;
 using namespace std;
 
 
-void cap_image(Mat &in, string path, int width, int height,int num_images,VideoCapture cap);
+void cap_image(Mat &in, string path, int width, int height,int num_images);
 vector<Rect> detectFaceInImage(Mat &image);
 void convert_image(string input_path, string output_path, int num_images); 

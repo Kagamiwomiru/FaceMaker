@@ -123,11 +123,14 @@ int main(int argc ,char *argv[]) {
 	char output[255];
 	char mkcmd[255];
 	char sendcmd[255];
+	unsigned int    now = (unsigned int)time( 0 );
+	srand(now);
 	sprintf(input,"./face/inpic/%s/",argv[1]);
 	input_path=string(input);
 	input_path +="in_%03d.jpg";
 	sprintf(output,"./face/outpic/%s/",argv[1]);
 	output_path=string(output);
+	output_path+=to_string(rand());
 	output_path+="out_%03d.jpg";
 	sprintf(mkcmd,"mkdir ./face/outpic/%s",argv[1]);
 	system(mkcmd);
