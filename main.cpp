@@ -12,6 +12,7 @@ void cap_image(Mat &in,string path, int width, int height,int num_images,VideoCa
 		writer << in;
 		count++;
 		waitKey(30);
+        usleep(500000);
 		}
 	destroyWindow("FaceMaker_Capturing");
 	//cap.release();
@@ -43,7 +44,7 @@ int main(){
     sprintf(rmcmd,"rm -rf ./pic/*");
     system(rmcmd);
     printf("サーバ側の「face/」ディレクトリを初期化しています...\n");
-    sprintf(svrm,"ssh Neptune rm -rf FaceMakerServer/face/inpic/*");
+    sprintf(svrm,"ssh Neptune 'rm -rf FaceMakerServer/face/inpic/*;rm -rf FaceMakerServer/face/outpic/*'");
 	system(svrm);
 
     printf("撮影枚数:");
