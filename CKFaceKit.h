@@ -12,8 +12,8 @@
 #include<string.h>
 #include<time.h>
 
-#define WIDTH 640
-#define HEIGHT 480
+#define WIDTH 500
+#define HEIGHT 500
 #define NAME_SIZE 10
 #define SYSCMD 100
 
@@ -21,6 +21,4 @@ using namespace cv;
 using namespace std;
 
 
-void cap_image(Mat &in, string path, int width, int height,int num_images);
-vector<Rect> detectFaceInImage(Mat &image);
-void convert_image(string input_path, string output_path, int num_images); 
+void cap_image(Mat &in, string path, int width, int height,int num_images,VideoCapture cap);
